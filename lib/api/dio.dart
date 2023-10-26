@@ -1,12 +1,6 @@
-import 'dart:io';
-
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
-import 'package:dio/io.dart';
-import 'package:dio_cookie_manager/dio_cookie_manager.dart';
-import 'package:professional_reset_api/api/error_handeler.dart';
-
-import '../index.dart';
+import 'package:professional_reset_api/api/network_exceptions/network_exceptions.dart';
 
 Dio get intiDio {
   late Dio dio;
@@ -14,8 +8,8 @@ Dio get intiDio {
 
   BaseOptions options = BaseOptions(
     baseUrl: 'https://gorest.co.in/public/v2/',
-    connectTimeout: const Duration(seconds: 10000),
-    receiveTimeout: const Duration(seconds: 10000),
+    connectTimeout: 10000,
+    receiveTimeout: 10000,
     headers: {
       "Accept": "application/json",
       "lang": "ar",
@@ -26,7 +20,7 @@ Dio get intiDio {
 
   dio = Dio(options);
 
-  dio.httpClientAdapter = IOHttpClientAdapter(
+  /* dio.httpClientAdapter = IOHttpClientAdapter(
     createHttpClient: () {
       // Don't trust any certificate just because their root cert is trusted.
       final HttpClient client =
@@ -36,13 +30,10 @@ Dio get intiDio {
           ((X509Certificate cert, String host, int port) => true);
       return client;
     },
-  );
-
-  CookieJar cookieJar = CookieJar();
-  dio.interceptors.add(CookieManager(cookieJar));
+  ); */
   dio.interceptors.add(
     LogInterceptor(
-      logPrint: (object) => debugPrint(object.toString()),
+      // logPrint: (object) => debugPrint(object.toString()),
       error: true,
       request: true,
       requestBody: true,
@@ -53,15 +44,11 @@ Dio get intiDio {
   );
   dio.interceptors.add(
     InterceptorsWrapper(
-      onRequest: (options, handler) {
-        return handler.next(options);
-      },
-      onResponse: (response, handler) {
-        return handler.next(response);
-      },
-      onError: (DioException dioError, handler) {
-        Error error = createErrorEntity(dioError);
-        onDioException(error);
+      onRequest: (options, handler) => handler.next(options),
+      onResponse: (response, handler) => handler.next(response),
+      onError: (DioError dioError, handler) { 
+        /*Error error = createErrorEntity(dioError);
+        onDioException(error); */
         return handler.next(dioError);
       },
     ),
