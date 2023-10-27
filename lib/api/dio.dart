@@ -1,6 +1,4 @@
-import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
-import 'package:professional_reset_api/api/network_exceptions/network_exceptions.dart';
 
 Dio get intiDio {
   late Dio dio;
@@ -13,6 +11,7 @@ Dio get intiDio {
     headers: {
       "Accept": "application/json",
       "lang": "ar",
+      "Authorization": "Bearer c7a40df036550091fdcdb6d3487a6a9f144556433bb7f6aaca0d40157186b66f",
     },
     contentType: 'application/json; charset=utf-8',
     responseType: ResponseType.json,
@@ -46,7 +45,7 @@ Dio get intiDio {
     InterceptorsWrapper(
       onRequest: (options, handler) => handler.next(options),
       onResponse: (response, handler) => handler.next(response),
-      onError: (DioError dioError, handler) { 
+      onError: (DioError dioError, handler) {
         /*Error error = createErrorEntity(dioError);
         onDioException(error); */
         return handler.next(dioError);

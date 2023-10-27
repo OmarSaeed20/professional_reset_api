@@ -7,7 +7,7 @@ class UserPage extends StatelessWidget {
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
     User? users;
-    return Scaffold(
+    return const Scaffold(
      /*  body: SafeArea(
         child: BlocBuilder<UserCubit, UserState>(
           bloc: sl<UserCubit>()..getUserId(id),

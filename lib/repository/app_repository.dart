@@ -26,10 +26,7 @@ class AppRepository {
 
   Future<ApiResult<User>> createUser(User newUser) async {
     try {
-      var response = await _apiClient.createUser(
-        newUser,
-        "Bearer c7a40df036550091fdcdb6d3487a6a9f144556433bb7f6aaca0d40157186b66f",
-      );
+      var response = await _apiClient.createUser(newUser);
       return ApiResult.success(response);
     } catch (e) {
       return ApiResult.failure(NetworkExceptions.getDioException(e));
@@ -38,18 +35,13 @@ class AppRepository {
 
   Future<ApiResult<void>> deletUser(int id) async {
     try {
-      await _apiClient.deleteUser(
-        id,
-        "Bearer c7a40df036550091fdcdb6d3487a6a9f144556433bb7f6aaca0d40157186b66f",
-      );
+      await _apiClient.deleteUser(id);
       return const ApiResult.success(null);
     } catch (e) {
       return ApiResult.failure(NetworkExceptions.getDioException(e));
     }
   }
 
-  Future<HttpResponse> deletUser2(int id) async => await _apiClient.deleteUser2(
-        id,
-        "Bearer c7a40df036550091fdcdb6d3487a6a9f144556433bb7f6aaca0d40157186b66f",
-      );
+  Future<HttpResponse> deletUser2(int id) async =>
+      await _apiClient.deleteUser2(id);
 }

@@ -12,9 +12,7 @@ class HomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => const SignUpPage(),
-          ),
+          MaterialPageRoute(builder: (context) => const SignUpPage()),
         ),
         child: const Icon(Icons.person_add_alt_1),
       ),
@@ -52,7 +50,9 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  ListTile userCard(User user, {required VoidCallback onTap}) {
+ 
+}
+ ListTile userCard(User user, {required VoidCallback onTap}) {
     return ListTile(
       onTap: onTap,
       leading: CircleAvatar(
@@ -81,4 +81,3 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-}

@@ -1,5 +1,8 @@
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:professional_reset_api/index.dart';
+
+import 'controller/use_controller/ok/view.dart';
 
 void main() async {
   await initGetIt();
@@ -16,7 +19,15 @@ class MyApp extends StatelessWidget {
         statusBarColor: Colors.transparent,
         statusBarBrightness: Brightness.dark,
       ),
-      child: MaterialApp(
+      child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home:const OkPage(),
+      ),
+     /*  child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -26,7 +37,7 @@ class MyApp extends StatelessWidget {
           create: (context) => sl<UserCubit>(),
           child: const HomePage(),
         ),
-      ),
+      ), */
     );
   }
 }

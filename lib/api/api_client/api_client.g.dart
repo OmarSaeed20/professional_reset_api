@@ -69,14 +69,10 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<User> createUser(
-    newUser,
-    token,
-  ) async {
+  Future<User> createUser(newUser) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(newUser.toJson());
     final _result =
@@ -97,14 +93,10 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<void> deleteUser(
-    id,
-    token,
-  ) async {
+  Future<void> deleteUser(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'DELETE',
@@ -122,14 +114,10 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<HttpResponse<dynamic>> deleteUser2(
-    id,
-    token,
-  ) async {
+  Future<HttpResponse<dynamic>> deleteUser2(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': token};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result =
         await _dio.fetch(_setStreamType<HttpResponse<dynamic>>(Options(

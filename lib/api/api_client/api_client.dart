@@ -16,19 +16,17 @@ abstract class ApiClient {
 
   @POST('users')
   Future<User> createUser(
-    @Body() User newUser,
-    @Header("Authorization") String token,
+    @Body() User newUser
   );
 
   @DELETE('users/{id}')
   Future<void> deleteUser(
-    @Path() int id,
-    @Header("Authorization") String token,
+    @Path() int id
+    
   );
 
   @DELETE('users/{id}')
   Future<HttpResponse> deleteUser2(
-    @Path() int id,
-    @Header("Authorization") String token,
+    @Path() int id
   );
 }
